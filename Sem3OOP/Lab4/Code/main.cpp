@@ -1,6 +1,7 @@
 #include "figure.hpp"
 #include <vector>
 #include <string>
+#include <iostream>
 
 
 void Help() {
