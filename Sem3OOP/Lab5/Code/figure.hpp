@@ -52,11 +52,12 @@ public:
             throw 0;
         }
 
-        A = a;
-        B = b;
-        C = c;
-        D = d;
+        points[0] = a;
+        points[1] = b;
+        points[2] = c;
+        points[3] = d;
     }
+
     template <typename F>
     friend Point<double> Median(F figure);
 
@@ -70,7 +71,7 @@ public:
 
 
 private:
-    Point<T> A, B, C, D;
+    Point<T> points[4];
 };
 
 template <typename T>
@@ -83,10 +84,10 @@ template <class T,
         typename std::enable_if<!(isTuple<T>)>::type* = nullptr> 
 Point<double> Median(T figure) {
     Point<double> median;
-    median.first = (figure.A.first + figure.B.first + 
-            figure.C.first + figure.D.first) / 4.0;
-    median.second = (figure.A.second + figure.B.second + 
-            figure.C.second + figure.D.second) / 4.0;
+    median.first = (figure.points[0].first + figure.points[1].first + 
+            figure.points[2].first + figure.points[3].first) / 4.0;
+    median.second = (figure.points[0].second + figure.points[1].second + 
+            figure.points[2].second + figure.points[3].second) / 4.0;
     return median;
 }
 
@@ -104,7 +105,7 @@ Point<double> Median(T figure) {
 template <class T, 
         typename std::enable_if<!(isTuple<T>)>::type* = nullptr> 
 double Area(T figure) {
-    return pow(PointDistance(figure.A, figure.B), 2);
+    return pow(PointDistance(figure.points[0], figure.points[1]), 2);
 }
 
 template <class T, 
